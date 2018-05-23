@@ -1,14 +1,7 @@
-public class Dollar {
-    private int amount;
+public class Dollar extends Money {
 
     public Dollar(int amount) {
-        this.amount = amount;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        Dollar dollar = (Dollar) obj;
-        return amount == dollar.amount;
+        super(amount);
     }
 
     public Dollar plus(Dollar addend) {
