@@ -58,4 +58,13 @@ public class DollarTest {
     public void test_one_dollar_add_two_franc_equals_two_dollar() {
         assertEquals(Money.dollar(2), Money.dollar(1).plus(Money.franc(2)).reduce(bank, Money.DOLLAR_CURRENCY));
     }
+
+    @Test
+    public void test_complex_requirement() {
+        Expression dollarExpression = Money.dollar(25).multiply(1000);
+        Expression frankExpression = Money.franc(150).multiply(400);
+        Expression expression = dollarExpression.plus(frankExpression);
+
+        assertEquals(expression.reduce(bank, Money.DOLLAR_CURRENCY), Money.dollar(55000));
+    }
 }
