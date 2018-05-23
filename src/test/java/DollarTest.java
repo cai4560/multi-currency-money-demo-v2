@@ -39,4 +39,9 @@ public class DollarTest {
         Dollar two = new Dollar(2);
         assertEquals(two.multiply(2), new Dollar(4));
     }
+
+    @Test
+    public void test_one_dollar_should_not_equal_one_franc() {
+        assertNotEquals(new Dollar(1), new Franc(1));
+    }
 }
