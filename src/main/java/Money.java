@@ -1,6 +1,6 @@
 import java.math.BigDecimal;
 
-public class Money {
+public class Money implements Expression {
     static final String DOLLAR_CURRENCY = "USD";
     static final String FRANC_CURRENCY = "CHF";
 
@@ -22,16 +22,24 @@ public class Money {
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
         Money money = (Money) obj;
         return amount.compareTo(money.amount) == 0 && currency.equals(money.currency);
     }
 
-    public Money plus(Money addend) {
-        return new Money(amount.add(addend.amount), currency);
+    public Money reduce(Bank bank, String toCurrency) {
+        return bank.reduce(this, toCurrency);
     }
 
-    public Money multiply(int multiplier) {
-        return new Money(amount.multiply(new BigDecimal(multiplier)), currency);
+    public Expression plus(Expression addend) {
+        return new Sum(this, addend);
+    }
+
+    public Expression multiply(int multiplier) {
+        BigDecimal newAmount = this.amount.multiply(new BigDecimal(multiplier));
+        return new Money(newAmount, this.currency);
     }
 
     public BigDecimal getAmount() {

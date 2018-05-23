@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class FrancTest {
+    private Bank bank = new Bank();
+
     @Test
     public void test_one_franc_should_equal_one_franc() {
         assertEquals(Money.franc(1), Money.franc(1));
@@ -18,14 +20,14 @@ public class FrancTest {
     public void test_one_franc_add_one_franc_should_equal_two_franc() {
         Money one = Money.franc(1);
         Money anotherOne = Money.franc(1);
-        assertEquals(one.plus(anotherOne), Money.franc(2));
+        assertEquals(one.plus(anotherOne).reduce(bank, Money.FRANC_CURRENCY), Money.franc(2));
     }
 
     @Test
     public void test_one_franc_add_two_franc_should_equal_three_franc() {
         Money one = Money.franc(1);
         Money two = Money.franc(2);
-        assertEquals(one.plus(two), Money.franc(3));
+        assertEquals(one.plus(two).reduce(bank, Money.FRANC_CURRENCY), Money.franc(3));
     }
 
     @Test
