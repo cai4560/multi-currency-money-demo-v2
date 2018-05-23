@@ -12,4 +12,12 @@ public class Money {
         Money money = (Money) obj;
         return amount == money.amount && currency.equals(money.currency);
     }
+
+    public Money plus(Money addend) {
+        return new Money(amount + addend.amount, currency);
+    }
+
+    public Money multiply(int multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
 }

@@ -4,11 +4,4 @@ public class Dollar extends Money {
         super(amount, "USD");
     }
 
-    public Dollar plus(Dollar addend) {
-        return new Dollar(amount + addend.amount);
-    }
-
-    public Dollar multiply(int multiplier) {
-        return new Dollar(amount * multiplier);
-    }
 }
