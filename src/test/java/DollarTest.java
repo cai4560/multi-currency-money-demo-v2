@@ -53,4 +53,10 @@ public class DollarTest {
         Money reduced = bank.reduce(twoFrancs, Money.DOLLAR_CURRENCY);
         assertEquals(Money.dollar(1), reduced);
     }
+
+    @Test
+    public void test_one_dollar_add_two_franc_equals_two_dollar() {
+        Sum sum = new Sum(Money.dollar(1), Money.franc(2));
+        assertEquals(Money.dollar(2), sum.reduce(bank, Money.DOLLAR_CURRENCY));
+    }
 }
