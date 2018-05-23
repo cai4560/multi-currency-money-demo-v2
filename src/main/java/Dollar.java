@@ -10,4 +10,8 @@ public class Dollar {
         Dollar dollar = (Dollar) obj;
         return amount == dollar.amount;
     }
+
+    public Dollar plus(Dollar addend) {
+        return new Dollar(amount + addend.amount);
+    }
 }
